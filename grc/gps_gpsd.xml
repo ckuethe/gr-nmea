@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<block>
+	<name>gpsd</name>
+	<key>gps_gpsd</key>
+	<category>gps</category>
+	<import>import gps</import>
+	<import>import socket</import>
+	<make>gps.gpsd($host, $port)</make>
+	<param>
+		<name>GPSD Host</name>
+		<key>host</key>
+		<value>localhost</value>
+		<type>string</type>
+	</param>
+	<param>
+		<name>TCP port</name>
+		<key>port</key>
+		<value>2947</value>
+		<type>int</type>
+	</param>
+
+	<source>
+		<name>out</name>
+		<type>byte</type>
+	</source>
+</block>
