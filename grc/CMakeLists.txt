@@ -18,6 +18,7 @@
 # Boston, MA 02110-1301, USA.
 
 install(FILES
-    gps_nmea.xml
-    gps_gpsd.xml DESTINATION share/gnuradio/grc/blocks
+    gps_nmea_serial.xml
+    gps_nmea_gpsd.xml
+    DESTINATION share/gnuradio/grc/blocks
 )

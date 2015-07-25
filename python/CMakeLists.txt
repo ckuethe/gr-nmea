@@ -31,16 +31,9 @@ endif()
 GR_PYTHON_INSTALL(
     FILES
     __init__.py
-    nmea.py
-    gpsd.py DESTINATION ${GR_PYTHON_DIR}/gps
+    nmea_serial.py
+    nmea_gpsd.py
+    nmea_parser_core.py
+    DESTINATION ${GR_PYTHON_DIR}/gps
 )
 
-########################################################################
-# Handle the unit tests
-########################################################################
-include(GrTest)
-
-set(GR_TEST_TARGET_DEPS gnuradio-gps)
-set(GR_TEST_PYTHON_DIRS ${CMAKE_BINARY_DIR}/swig)
-GR_ADD_TEST(qa_nmea ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_nmea.py)
-GR_ADD_TEST(qa_gpsd ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_gpsd.py)

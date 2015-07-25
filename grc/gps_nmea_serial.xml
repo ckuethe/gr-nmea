@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <block>
-	<name>nmea</name>
-	<key>gps_nmea</key>
+	<name>nmea_serial</name>
+	<key>gps_nmea_serial</key>
 	<category>gps</category>
 	<import>import gps</import>
-	<make>gps.nmea($device, $speed)</make>
+	<make>gps.nmea_serial($device, $speed)</make>
 	<param>
 		<name>device</name>
 		<key>device</key>
@@ -22,5 +22,10 @@
 		<name>out</name>
 		<type>byte</type>
 		<vlen>$vlen</vlen>
+	</source>
+	<source>
+		<name>gps_msg</name>
+		<type>message</type>
+		<optional>1</optional>
 	</source>
 </block>

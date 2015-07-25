@@ -31,6 +31,7 @@ except ImportError:
 	pass
 
 # import any pure python here
-from nmea import nmea
-from gpsd import gpsd
+from nmea_serial import nmea_serial
+from nmea_gpsd import nmea_gpsd
+from nmea_parser import nmea_parser
 #

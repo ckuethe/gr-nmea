@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <block>
-	<name>gpsd</name>
-	<key>gps_gpsd</key>
+	<name>nmea_gpsd</name>
+	<key>gps_nmea_gpsd</key>
 	<category>gps</category>
 	<import>import gps</import>
 	<import>import socket</import>
-	<make>gps.gpsd($host, $port)</make>
+	<make>gps.nmea_gpsd($host, $port)</make>
 	<param>
 		<name>GPSD Host</name>
 		<key>host</key>
@@ -22,5 +22,10 @@
 	<source>
 		<name>out</name>
 		<type>byte</type>
+	</source>
+	<source>
+		<name>gps_msg</name>
+		<type>message</type>
+		<optional>1</optional>
 	</source>
 </block>
