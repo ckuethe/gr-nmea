@@ -1,4 +1,4 @@
-title: gr-gps
+title: gr-nmea
 brief: interface to NMEA and GPSD sources
 tags:
   - sdr
@@ -7,7 +7,7 @@ tags:
 author:
   - Chris Kuethe <chris.kuethe+github@gmail.com>
 copyright_owner:
-  - Chris Kuethe
+  - Chris Kuethe <chris.kuethe+github@gmail.com>
 license: GPLv3
 repo: https://github.com/ckuethe/
 icon: http://www.catb.org/gpsd/gpsd-logo-small.png
