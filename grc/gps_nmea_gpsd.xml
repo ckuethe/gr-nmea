@@ -5,7 +5,7 @@
 	<category>gps</category>
 	<import>import gps</import>
 	<import>import socket</import>
-	<make>gps.nmea_gpsd($host, $port)</make>
+	<make>gps.nmea_gpsd($host, $port, $protocol)</make>
 	<param>
 		<name>GPSD Host</name>
 		<key>host</key>
@@ -17,6 +17,20 @@
 		<key>port</key>
 		<value>2947</value>
 		<type>int</type>
+	</param>
+	<param>
+		<name>Protocol</name>
+		<key>protocol</key>
+		<value>'nmea'</value>
+		<type>enum</type>
+		<option>
+			<name>NMEA0183</name>
+			<key>'nmea'</key>
+		</option>
+		<option>
+			<name>GPSD native</name>
+			<key>'gpsd'</key>
+		</option>
 	</param>
 
 	<source>

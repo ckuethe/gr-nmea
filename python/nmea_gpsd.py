@@ -23,7 +23,7 @@
 import numpy
 import socket
 import pmt
-from nmea_parser_core import nmea_parser_core
+from nmea_parser_core import nmea_parser_core, gpsd_parser_core
 
 from datetime import datetime as dt
 from datetime import date as dtdate
@@ -32,7 +32,7 @@ from gnuradio import gr
 class nmea_gpsd(gr.sync_block):
 	"""NMEA source block, fed by a gpsd instance"""
 
-	def __init__(self, host='localhost', port=2947):
+	def __init__(self, host='localhost', port=2947, protocol='nmea'):
 		"""Set up network socket for NMEA streaming"""
 		gr.sync_block.__init__(self, name="nmea_gpsd", in_sig=None, out_sig=[numpy.uint8])
 
@@ -40,7 +40,13 @@ class nmea_gpsd(gr.sync_block):
 		self.serial = self.sock.makefile('r')
 		self.sock.connect((host, port))
 		junk = self.serial.readline() # skip the daemon banner
-		self.sock.send('?WATCH={"enable":true,"nmea":true ,"json":false }\n\n')
+		if protocol == 'nmea':
+			self.sock.send('?WATCH={"enable":true,"nmea":true ,"json":false }\n\n')
+		elif protocol == 'gpsd':
+			self.sock.send('?WATCH={"enable":true,"nmea":false ,"json":true }\n\n')
+		else:
+			raise ValueError("invalid protocol '%s'" % protocol)
+		self.protocol = protocol
 		junk = self.serial.readline() # skip devices line
 		junk = self.serial.readline() # skip the "WATCH" line
 
@@ -58,7 +64,10 @@ class nmea_gpsd(gr.sync_block):
 		outbuf[:outlen] = numpy.fromstring(outstr, dtype=numpy.byte)
 
 		try:
-			nmea_parser_core(self, outstr)
+			if self.protocol == 'nmea':
+				nmea_parser_core(self, outstr)
+			if self.protocol == 'gpsd':
+				gpsd_parser_core(self, outstr)
 		except Exception:
 			pass
 
@@ -72,19 +81,22 @@ if __name__ == '__main__':
 	from gnuradio import blocks
 
 	parser = OptionParser(usage="%prog: [options]")
-	parser.add_option("-h", "--host", dest="host", type="string", default="localhost",
-		help="Set gpsd host [default=%default]")
+	parser.add_option("-s", "--server", dest="host", type="string", default="localhost",
+		help="Set gpsd server [default=%default]", metavar='SERVER')
 	parser.add_option("-p", "--port", dest="port", type="int", default=2947,
 		help="Set gpsd port [default=%default]")
 	parser.add_option("-r", "--raw", dest="raw", action="store_true", default=False,
-		help="emit raw NMEA [default=%default]")
+		help="emit raw protocol [default=%default]")
+	parser.add_option("-g", "--gpsd", dest="gpsd", action="store_true", default=False,
+		help="emit raw protocol [default=%default]")
 	(options, args) = parser.parse_args()
 
 	# create flowgraph
 	tb = gr.top_block()
 
 	# GPS that drives this all...
-	gps_source = nmea_gpsd(options.host, options.port)
+	protocol = 'gpsd' if options.gpsd else 'nmea'
+	gps_source = nmea_gpsd(options.host, options.port, protocol)
 
 	# Definitely want message output
 	message_sink = blocks.message_debug()
