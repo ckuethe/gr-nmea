@@ -9,7 +9,7 @@ author:
 copyright_owner:
   - Chris Kuethe <chris.kuethe+github@gmail.com>
 license: GPLv3
-repo: https://github.com/ckuethe/
+repo: https://github.com/ckuethe/gr-nmea.git
 icon: http://www.catb.org/gpsd/gpsd-logo-small.png
 ---
 This module presents a basic interface for external GPS receivers
