@@ -45,7 +45,7 @@ class nmea_serial(gr.sync_block):
 	def work(self, input_items, output_items):
 		"""Stream NMEA data for processing"""
 		outbuf = output_items[0]
-		outstr = self.serial.readline().strip()
+		outstr = self.serial.readline()
 		self.host_time = dt.now()
 
 		outlen = len(outstr)
