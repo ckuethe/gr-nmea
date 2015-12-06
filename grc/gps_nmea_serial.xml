@@ -2,10 +2,10 @@
 <block>
 	<name>nmea_serial</name>
 	<key>gps_nmea_serial</key>
-	<category>gps</category>
+	<category>grgps</category>
 	<flags>throttle</flags>
-	<import>import gps</import>
-	<make>gps.nmea_serial($device, $speed)</make>
+	<import>import grgps</import>
+	<make>grgps.nmea_serial($device, $speed)</make>
 	<param>
 		<name>device</name>
 		<key>device</key>

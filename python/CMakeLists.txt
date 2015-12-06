@@ -34,6 +34,6 @@ GR_PYTHON_INSTALL(
     nmea_serial.py
     nmea_gpsd.py
     nmea_parser_core.py
-    DESTINATION ${GR_PYTHON_DIR}/gps
+    DESTINATION ${GR_PYTHON_DIR}/grgps
 )
 

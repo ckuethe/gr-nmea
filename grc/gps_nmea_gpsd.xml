@@ -4,9 +4,9 @@
 	<key>gps_nmea_gpsd</key>
 	<category>gps</category>
 	<flags>throttle</flags>
-	<import>import gps</import>
+	<import>import grgps</import>
 	<import>import socket</import>
-	<make>gps.nmea_gpsd($host, $port, $protocol)</make>
+	<make>grgps.nmea_gpsd($host, $port, $protocol)</make>
 	<param>
 		<name>GPSD Host</name>
 		<key>host</key>

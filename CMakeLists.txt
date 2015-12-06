@@ -180,5 +180,5 @@ if(NOT CMAKE_MODULES_DIR)
 endif(NOT CMAKE_MODULES_DIR)
 
 install(FILES cmake/Modules/gpsConfig.cmake
-    DESTINATION ${CMAKE_MODULES_DIR}/gps
+    DESTINATION ${CMAKE_MODULES_DIR}/grgps
 )
