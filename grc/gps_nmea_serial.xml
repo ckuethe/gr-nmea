@@ -3,7 +3,7 @@
 	<name>nmea_serial</name>
 	<key>gps_nmea_serial</key>
 	<category>grgps</category>
-	<flags>throttle</flags>
+	<throttle>1</throttle>
 	<import>import grgps</import>
 	<make>grgps.nmea_serial($device, $speed)</make>
 	<param>
