@@ -3,7 +3,7 @@
 	<name>nmea_gpsd</name>
 	<key>gps_nmea_gpsd</key>
 	<category>gps</category>
-	<flags>throttle</flags>
+	<throttle>1</throttle>
 	<import>import grgps</import>
 	<import>import socket</import>
 	<make>grgps.nmea_gpsd($host, $port, $protocol)</make>
